@@ -1,0 +1,18 @@
+<!-- views/pokemonDetails.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pokemon.name %> Details</title>
+</head>
+<body>
+    <h1><%= pokemon.name %> Details</h1>
+    <div>
+        <img src="<%= pokemon.img %>" alt="<%= pokemon.name %>">
+        <p>Type: <%= pokemon.type.join(', ') %></p>
+        <p>HP: <%= pokemon.stats.hp %></p>
+    </div>
+</body>
+</html>
