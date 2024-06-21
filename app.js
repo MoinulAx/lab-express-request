@@ -46,7 +46,6 @@ app.get("/pokemon", (req, res) =>{
 app.get("/pokemon/search", (req, res) => {
     const { name } = req.query;
     const thePokemon = pokemon.find(poke => poke.name.toLowerCase() === name.toLowerCase());
-    console.log(thePokemon)
     if (thePokemon) {
       res.send([thePokemon]);
     } else {
