@@ -1,18 +1,120 @@
-<!-- views/pokemonDetails.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= pokemon.name %> Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .pokemon-details {
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .pokemon-details h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .pokemon-details img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .pokemon-details p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .pokemon-details p:first-child {
+            margin-top: 0;
+        }
+        .popup {
+            display: none; 
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8); 
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1000; 
+        }
+        .popup p {
+            margin-bottom: 10px;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+       
+        button {
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            background-color: green;
+        }
+        button:hover {
+            background-color: greenyellow;
+        }
+    </style>
 </head>
 <body>
-    <h1><%= pokemon.name %> Details</h1>
-    <div>
-        <img src="<%= pokemon.img %>" alt="<%= pokemon.name %>">
-        <p>Type: <%= pokemon.type.join(', ') %></p>
-        <p>HP: <%= pokemon.stats.hp %></p>
+    <div class="pokemon-details">
+        <button onclick="goBack()">Go Back</button> 
+        <h1><%= pokemon.name %> </h1>
+        <img id="pokemon-img" src="<%= pokemon.img %>" alt="<%= pokemon.name %>">
+        <p><strong>Type:</strong> <%= pokemon.type.join(', ') %></p>
+        <p><strong>HP:</strong> <%= pokemon.stats.hp %></p>
+        <p><strong>Attack:</strong> <%= pokemon.stats.attack %></p>
+        <p><strong>Special Attack (SPA):</strong> <%= pokemon.stats.spattack %></p>
+        <p><strong>Defense:</strong> <%= pokemon.stats.defense %></p>
+        <p><strong>Special Defense (SPD):</strong> <%= pokemon.stats.spdefense %></p>
+        <button onclick="openPopup()">Additional Info</button>
     </div>
+
+    <div id="popup" class="popup">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <p><strong>Classification:</strong> <%= pokemon.misc.classification %></p>
+        <p><strong>Height:</strong> <%= pokemon.misc.height %></p>
+        <p><strong>Weight:</strong> <%= pokemon.misc.weight %> lbs</p>
+        <p><strong>Happiness:</strong> <%= pokemon.misc.happiness %></p>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function openPopup() {
+            var popup = document.getElementById('popup');
+            popup.style.display = 'block';
+        }
+
+        function closePopup() {
+            var popup = document.getElementById('popup');
+            popup.style.display = 'none';
+        }
+    </script>
 </body>
 </html>

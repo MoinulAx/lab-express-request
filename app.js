@@ -20,7 +20,7 @@ app.get("/bugs", (req, res) => {
     res.send(`
       ${bugCount} little bugs in the code
       <br>
-      <a href="/bugs/${bugCount + 2}">Pull one down, patch it around</a>
+      <a href="/bugs/${bugCount + 1}">Pull one down, patch it around</a>
     `);
   });
   
